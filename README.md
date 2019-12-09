@@ -1,8 +1,9 @@
 # OpenWRT_internet_detector
 the simplest internet detector script for OpenWrt TL-MR3020
+check if network unreachable
 sum 3*10 pings & reboot device if packet loss sum greater or equal than 22
 
-crontab started even 10 minutes
+crontab started even 9 minutes, script has delay for 60 seconds
 
 presets:
 
@@ -18,6 +19,6 @@ presets:
 
 #nano /etc/crontab
 
-*/10 * * * * sh /usr/sbin/internet_check.sh
+*/9 * * * * sh /usr/sbin/internet_check.sh
 
 #/etc/init.d/cron restart
