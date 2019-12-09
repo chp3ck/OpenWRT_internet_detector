@@ -9,9 +9,10 @@ then
         PACKET_LOSS_SUM=$(($PACKET_LOSS_1+$PACKET_LOSS_2+$PACKET_LOSS_3))
         if [ $PACKET_LOSS_SUM -ge 22 ]
         then
-                echo "Date: `date` | ${$PACKET_LOSS_SUM}% of 30 packets lost, restart device!!!\n\r" >> /root/internet_detector_logs/reboot.log
+                echo "Date: `date` | ${$PACKET_LOSS_SUM}% of 30 packets lost, restart device!!!" >> /root/internet_detector_logs/reboot.log
                 reboot
         fi
 else
-        echo "Date: `date` | Network unreachable, restart device!!!\n\r" >> /root/internet_detector_logs/reboot.log
+        echo "Date: `date` | Network unreachable, restart device!!!" >> /root/internet_detector_logs/reboot.log
+        reboot
 fi
