@@ -6,10 +6,15 @@ crontab started even 10 minutes
 
 presets:
 #touch /etc/crontabs/root
+
 #ln -sf /etc/crontabs/root /etc/crontab
+
 #/etc/init.d/cron start
+
 #/etc/init.d/cron enable
+
 #logread
+
 #nano /etc/crontab
 
 */10 * * * * sh /usr/sbin/internet_check.sh
