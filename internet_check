@@ -1,10 +1,17 @@
 #!bin/bash
-PACKET_LOSS_1=`ping -c 10 1.1.1.1 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
-PACKET_LOSS_2=`ping -c 10 8.8.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
-PACKET_LOSS_3=`ping -c 10 77.88.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
-PACKET_LOSS_SUM=$(($PACKET_LOSS_1+$PACKET_LOSS_2+$PACKET_LOSS_3))
-if [ $PACKET_LOSS_SUM -ge 22 ]
+sleep 60s
+wget -q --spider http://google.com
+if [ $? -eq 0 ]
 then
-        echo "${$PACKET_LOSS_SUM}% of 30 packets lost, restart device!!!\n\r" >> /root/internet_detector_logs/internet_detector_reboot.log
-        reboot
+        PACKET_LOSS_1=`ping -c 10 1.1.1.1 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
+        PACKET_LOSS_2=`ping -c 10 8.8.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
+        PACKET_LOSS_3=`ping -c 10 77.88.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
+        PACKET_LOSS_SUM=$(($PACKET_LOSS_1+$PACKET_LOSS_2+$PACKET_LOSS_3))
+        if [ $PACKET_LOSS_SUM -ge 22 ]
+        then
+                echo "Date: `date` | ${$PACKET_LOSS_SUM}% of 30 packets lost, restart device!!!\n\r" >> /root/internet_detector_logs/reboot.log
+                reboot
+        fi
+else
+        echo "Date: `date` | Network unreachable, restart device!!!\n\r" >> /root/internet_detector_logs/reboot.log
 fi
