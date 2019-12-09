@@ -5,6 +5,7 @@ sum 3*10 pings & reboot device if packet loss sum greater or equal than 22
 crontab started even 10 minutes
 
 presets:
+
 #touch /etc/crontabs/root
 
 #ln -sf /etc/crontabs/root /etc/crontab
