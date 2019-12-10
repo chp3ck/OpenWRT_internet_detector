@@ -3,9 +3,9 @@ sleep 60s
 wget -q --spider http://google.com
 if [ $? -eq 0 ]
 then
-        PACKET_LOSS_1=`ping -c 1 1.1.1.1 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
-        PACKET_LOSS_2=`ping -c 1 8.8.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
-        PACKET_LOSS_3=`ping -c 1 77.88.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
+        PACKET_LOSS_1=`ping -c 10 1.1.1.1 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
+        PACKET_LOSS_2=`ping -c 10 8.8.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
+        PACKET_LOSS_3=`ping -c 10 77.88.8.8 | grep packets | awk -F '%' '{print $1}' | awk -F ', ' '{print $NF}'`
         PACKET_LOSS_SUM=$(($PACKET_LOSS_1+$PACKET_LOSS_2+$PACKET_LOSS_3))
         if [ $PACKET_LOSS_SUM -ge 22 ]
         then
